@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/db4o-8.0.249.16098-all-java5.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/jetty-6.0.0beta6.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/org.json-20120521.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/servlet-api-3.0.pre4.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry kind="lib" path="D:/Escola/FATEC_Banco de Dados/3SEM/Laboratorio III/jars/spark-0.9.9-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

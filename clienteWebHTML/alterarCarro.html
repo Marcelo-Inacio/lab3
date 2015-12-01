@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link rel="shortcut icon" href="img/parking.png"/>
+    <title>parking.com</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="jquery.js"></script>
+	
+	<script type="text/javascript">
+			$(document).ready(function(){
+			    
+				$('#enviar').on('click', function(e) {
+					e.preventDefault();
+						
+						var dono = $('#txtProprietario').val().trim();
+						var placaLetra = $('#txtPlacaLetra').val().trim();
+						var placaNumero = $('#txtPlacaNumero').val().trim();
+						var modelo = $('#txtModelo').val().trim();
+						var cor = $('#txtCor').val().trim();
+						var upPlacaLetra = $('#txtPlacaLetraAlterar').val().trim();
+						var upPlacaNumero = $('#txtPlacaNumeroAlterar').val().trim();
+				
+						$.ajax({
+							url: "http://127.0.0.1:4567/updateCarro/"+dono+"/"+placaLetra+"-"+placaNumero+"/"+modelo+"/"+cor+"/"+upPlacaLetra+"-"+upPlacaNumero,
+							dataType: "json",
+							success: function(data) {
+								
+								html = '<table class="table table-striped"><tr><td>Situação</td><td>Observação</td></tr>';
+								
+								for (i = 0; i < data.length; i++) {
+									html += "<tr>";
+									html += "<td>" + data[i].status + "</td>";
+									html += "<td>" + data[i].obs + "</td>";
+									html += "</tr>";
+								};
+								html += '</table>';
+
+								$('#resultado').html(html);
+                                
+							},
+							
+							statusCode: {
+								404: function() {
+								alert('Houve um problema com o servidor . Tente novamente mais tarde!');
+								}
+							}
+						});
+					 
+					});
+				});
+	</script>
+	
+  </head>
+  
+  <body>
+	
+	<div class="container-fluid">
+	
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="js/bootstrap.min.js"></script>
+		
+		<h1>Parking<span class="label label-info">.com</span></h1>
+		
+		<nav class="navbar navbar-default; bg-info">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+				<img alt="Brand" src="img/parking.png" width="50px">
+			</div>
+		  </div>
+		</nav>
+		
+		<h3><span class="label label-info"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h3>
+		
+		<ul class="nav nav-tabs">
+		  <li role="presentation"><a href="index.html">Home</a></li>
+		  <li role="presentation"><a href="mostrarParking.html">Mostrar veículos</a></li>
+		  <li role="presentation"><a href="buscarPlaca.html">Buscar por placa</a></li>
+		  <li role="presentation"><a href="buscarData.html">Buscar por data</a></li>
+		  <li role="presentation"><a href="addCarro.html">Adicionar veículo</a></li>
+		  <li role="presentation" class="active"><a href="#">Alterar veículo</a></li>
+		  <li role="presentation"><a href="deletarCarro.html">Remover veículo</a></li>
+		</ul>
+		
+		<div class="alert alert-warning alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Atenção!</strong> Aqui você pode alterar um veículo cadastrado na base de dados.
+		</div>
+		
+		<form class="navbar-form navbar-left" role="search" id="form" align="center">
+			<div class="form-group input-group-lg">
+				<input type="text" class="form-control" id="txtProprietario" placeholder="PROPRIETARIO" maxlength="20" style="font-size:13px; width:180px" autofocus required>
+				<input type="text" class="form-control" id="txtPlacaLetra" placeholder="PLACA AAA" maxlength="3" style="font-size:13px; width:110px" autofocus required> -
+				<input type="text" class="form-control" id="txtPlacaNumero" placeholder="PLACA 1234" maxlength="4" style="font-size:13px; width:110px" autofocus required>
+				<input type="text" class="form-control" id="txtModelo" placeholder="MODELO" maxlength="15" style="font-size:13px; width:130px" autofocus required>
+				<input type="text" class="form-control" id="txtCor" placeholder="COR" maxlength="15" style="font-size:13px; width:140px" autofocus required><br>
+				<input type="text" class="form-control" id="txtPlacaLetraAlterar" placeholder="PLACA AAA[alterar]" style="font-size:13px; width:151px" maxlength="3" autofocus required> -
+				<input type="text" class="form-control" id="txtPlacaNumeroAlterar" placeholder="PLACA 1234[alterar]" style="font-size:13px; width:152px" maxlength="4" autofocus required>
+			</div>
+			
+			<button type="button" id="enviar" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+			
+		</form>
+		
+		<div id="resultado">
+		</div>
+	
+	
+	</div> <!-- fecha div container-fluid-->
+	<!-- <footer>Developed by Inácio.</footer> -->
+  </body>
+  
+</html>
